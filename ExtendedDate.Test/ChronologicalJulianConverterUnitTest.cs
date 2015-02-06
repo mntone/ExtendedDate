@@ -5,7 +5,7 @@ using ExtendedDate.Converters.Solar;
 namespace ExtendedDate.Test
 {
 	[TestClass]
-	public sealed class CæsarJulianConverterUnitTest
+	public sealed class ChronologicalJulianConverterUnitTest
 	{
 		public TestContext TestContext { get; set; }
 
@@ -23,7 +23,7 @@ namespace ExtendedDate.Test
 			TestContext.Run( ( int gy, int gm, int gd, int yy, int ym, int yd ) =>
 			{
 				long expected = ( new DateTime( gy, gm, gd ) - new DateTime( 1601, 1, 1 ) ).Days;
-				CæsarJulianConverter.Instance.ToDays( new Date( ( short )yy, ( char )ym, ( char )yd, ( short )0, ( char )0 ) ).Value.Is( expected );
+				ChronologicalJulianConverter.Instance.ToDays( new Date( ( short )yy, ( char )ym, ( char )yd, ( short )0, ( char )0 ) ).Value.Is( expected );
 			} );
 		}
 	}

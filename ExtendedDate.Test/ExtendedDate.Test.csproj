@@ -54,7 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CæsarJulianConverterUnitTest.cs" />
+    <Compile Include="ChronologicalJulianConverterUnitTest.cs" />
     <Compile Include="GregorianConverterUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
