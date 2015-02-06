@@ -38,6 +38,7 @@
     <Folder Include="Converters\Lunisolar\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\Solar\AugustusJulianConverter.cs" />
     <Compile Include="Converters\Solar\CæsarJulianConverter.cs" />
     <Compile Include="Converters\Solar\GregorianConverter.cs" />
     <Compile Include="Converters\Solar\JulianConverter.cs" />
