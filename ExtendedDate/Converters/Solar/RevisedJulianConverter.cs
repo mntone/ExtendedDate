@@ -2,11 +2,11 @@
 
 namespace ExtendedDate.Converters.Solar
 {
-	public sealed class GregorianConverter: IDateConverter
+	public sealed class RevisedJulianConverter: IDateConverter
 	{
 		public static IDateConverter Instance
 		{
-			get { return _Instance ?? ( _Instance = new GregorianConverter() ); }
+			get { return _Instance ?? ( _Instance = new RevisedJulianConverter() ); }
 		}
 		private static IDateConverter _Instance;
 
@@ -16,20 +16,20 @@ namespace ExtendedDate.Converters.Solar
 		private const int DaysPerYears = 365;
 		private const int DaysPer4Years = 4 * DaysPerYears + 1;
 		private const int DaysPer100Years = 25 * DaysPer4Years - 1;
-		private const int DaysPer400Years = 4 * DaysPer100Years + 1;
+		private const int DaysPer900Years = 9 * DaysPer100Years + 2;
 
 		private static readonly short[] DaysToMonth365 = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365 };
 		private static readonly short[] DaysToMonth366 = { 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366 };
 
-		private GregorianConverter()
+		private RevisedJulianConverter()
 		{ }
 
 		public Date ToDate( Days value )
 		{
 			var d = value.Value;
 
-			var y400 = d / DaysPer400Years;
-			d -= y400 * DaysPer400Years;
+			var y900 = d / DaysPer900Years;
+			d -= 2 * y900 * DaysPer900Years;
 
 			var y100 = d / DaysPer100Years;
 			if( y100 == 4 )
@@ -48,7 +48,7 @@ namespace ExtendedDate.Converters.Solar
 			}
 			d -= y1 * DaysPerYears;
 
-			var leap = y1 == 3 && ( y4 != 24 || y100 == 3 );
+			var leap = y1 == 3 && ( y4 != 24 || y100 == 1 || y100 == 5 );
 			var m = d >> 5 + 1;
 			var days = this.GetCalendar( leap );
 			while( m >= days[m] )
@@ -57,7 +57,7 @@ namespace ExtendedDate.Converters.Solar
 			}
 
 			return new Date(
-				( short )( 400 * y400 + 100 * y100 + 4 * y4 + y1 + 1 ),
+				( short )( 900 * y900 + 100 * y100 + 4 * y4 + y1 + 1 ),
 				( char )m,
 				( char )( d - days[m - 1] + 1 ),
 				( short )( d + 1 ),
@@ -71,7 +71,7 @@ namespace ExtendedDate.Converters.Solar
 
 		internal bool GetIsLeapYear( long years )
 		{
-			return years % 4 == 0 && ( years % 100 != 0 || years % 400 == 0 );
+			return years % 4 == 0 && ( years % 100 != 0 || years % 900 == 200 || years % 900 == 600 );
 		}
 
 		internal short[] GetCalendar( bool isLeapYear )
@@ -105,9 +105,9 @@ namespace ExtendedDate.Converters.Solar
 			var yearWithOffset = year + YearsOffset;
 			if( yearWithOffset < 0 )
 			{
-				return DaysPerYears * yearWithOffset + ( yearWithOffset - 3 ) / 4 - ( yearWithOffset - 99 ) / 100 + ( yearWithOffset - 399 ) / 400 + calendar[month - 1] + day - 1;
+				return DaysPerYears * yearWithOffset + ( yearWithOffset - 3 ) / 4 - ( yearWithOffset - 99 ) / 100 + ( yearWithOffset - 1099 ) / 900 + ( yearWithOffset - 1499 ) / 900 + calendar[month - 1] + day - 14;
 			}
-			return DaysPerYears * yearWithOffset + yearWithOffset / 4 - yearWithOffset / 100 + yearWithOffset / 400 + calendar[month - 1] + day - 1;
+			return DaysPerYears * yearWithOffset + yearWithOffset / 4 - yearWithOffset / 100 + ( yearWithOffset - 200 ) / 900 + ( yearWithOffset - 600 ) / 900 + calendar[month - 1] + day - 14;
 		}
 	}
 }

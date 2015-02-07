@@ -44,7 +44,7 @@ namespace ExtendedDate.Converters.Solar
 
 		public Days ToDays( Date value )
 		{
-			return new Days() { Value = DateToDay( value ) };
+			return new Days() { Value = DateToDays( value ) };
 		}
 
 		internal bool GetIsLeapYear( long years )
@@ -59,7 +59,7 @@ namespace ExtendedDate.Converters.Solar
 			return calendar[month] - calendar[month - 1];
 		}
 
-		internal long DateToDay( Date value )
+		internal long DateToDays( Date value )
 		{
 			var year = value.Year;
 			var month = value.Month;

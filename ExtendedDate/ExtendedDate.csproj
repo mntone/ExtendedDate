@@ -42,6 +42,7 @@
     <Compile Include="Converters\Solar\ChronologicalJulianConverter.cs" />
     <Compile Include="Converters\Solar\GregorianConverter.cs" />
     <Compile Include="Converters\Solar\JulianConverter.cs" />
+    <Compile Include="Converters\Solar\RevisedJulianConverter.cs" />
     <Compile Include="Days.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="IDateConverter.cs" />
