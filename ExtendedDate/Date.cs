@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ExtendedDate
 {
-	public struct Date
+	public struct Date: IEquatable<Date>
 	{
 		public Date( short year, char month, char day, short dayOfYear, char dayOfWeek )
 			: this()
@@ -16,6 +16,36 @@ namespace ExtendedDate
 
 			this.DayOfYear = dayOfYear;
 			this.DayOfWeak = dayOfWeek;
+		}
+
+		public override int GetHashCode()
+		{
+			return ( unchecked( ( int )( ( ( int )this.Year ) << 16 | ( ( int )this.Month ) << 8 | ( int )this.Day ) ) );
+		}
+
+		public override bool Equals( Object obj )
+		{
+			if( obj is Date )
+			{
+				var other = ( Date )obj;
+				return this.Year == other.Year && this.Month == other.Month && this.Day == other.Day;
+			}
+			return false;
+		}
+
+		public bool Equals( Date other )
+		{
+			return this.Year == other.Year && this.Month == other.Month && this.Day == other.Day;
+		}
+
+		public static bool operator ==( Date left, Date right )
+		{
+			return left.Year == right.Year && left.Month == right.Month && left.Day == right.Day;
+		}
+
+		public static bool operator !=( Date left, Date right )
+		{
+			return left.Year != right.Year || left.Month != right.Month || left.Day != right.Day;
 		}
 
 		public short Year { get; private set; }
