@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExtendedDate.Converters.Solar
+namespace Mntone.ExtendedDate.Converters.Solar
 {
 	public sealed class RevisedJulianConverter: IDateConverter
 	{

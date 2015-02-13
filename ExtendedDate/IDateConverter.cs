@@ -1,5 +1,5 @@
 ﻿
-namespace ExtendedDate
+namespace Mntone.ExtendedDate
 {
 	public interface IDateConverter
 	{

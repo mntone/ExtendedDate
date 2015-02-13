@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ExtendedDate
+namespace Mntone.ExtendedDate
 {
 	public struct Date: IEquatable<Date>
 	{

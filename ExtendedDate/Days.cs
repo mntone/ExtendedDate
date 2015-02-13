@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExtendedDate
+namespace Mntone.ExtendedDate
 {
 	public struct Days: IEquatable<Days>, IComparable, IComparable<Days>
 	{

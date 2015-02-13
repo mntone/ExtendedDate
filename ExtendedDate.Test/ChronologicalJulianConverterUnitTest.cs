@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExtendedDate.Converters.Solar;
+using Mntone.ExtendedDate.Converters.Solar;
 
-namespace ExtendedDate.Test
+namespace Mntone.ExtendedDate.Test
 {
 	[TestClass]
 	public sealed class ChronologicalJulianConverterUnitTest

@@ -8,8 +8,8 @@
     <ProjectGuid>{7004C645-CC9D-42C8-825E-8A247E206981}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtendedDate</RootNamespace>
-    <AssemblyName>ExtendedDate</AssemblyName>
+    <RootNamespace>Mntone.ExtendedDate</RootNamespace>
+    <AssemblyName>Mntone.ExtendedDate</AssemblyName>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -45,6 +45,9 @@
     <Compile Include="Converters\Solar\RevisedJulianConverter.cs" />
     <Compile Include="Days.cs" />
     <Compile Include="Date.cs" />
+    <Compile Include="Globalization\ICalendar.cs" />
+    <Compile Include="Globalization\JapaneseCalendar.cs" />
+    <Compile Include="Globalization\JapaneseEra.cs" />
     <Compile Include="IDateConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
